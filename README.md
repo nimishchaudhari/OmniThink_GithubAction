@@ -43,8 +43,14 @@ through Thinking</h3>
 - 🧐[Evaluation](#evaluation)
 
 
----
-Due to the recent high volume of visitors, search API quota limitations, you may encounter an error:```'ValueError: Expected 2D array, got 1D array instead: array=[]. Reshape your data either using array.reshape(-1, 1) if your data has a single feature or array.reshape(1, -1) if it contains a single sample.'```If this error occurs, please try again in a few hours.
+# 🔔News
+
+- `2025-01-28`, We have provided support for the deepseek-reasoner model. You can try running ./examples/deepseekr1.py to test OmniThink's performance within deepseek-reasoner.
+<details>
+<summary><b>Previous News</b></summary>
+
+</details>
+
 
 # 🌻Acknowledgement
 
