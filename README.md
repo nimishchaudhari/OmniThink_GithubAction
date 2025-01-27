@@ -82,22 +82,16 @@ cd OmniThink
 pip install -r requirement.txt
 
 ```
-🔑 Before running, please export the OPENAI API key or Dashscope API key and SEARCH key as an environment variable:
+🔑 Before running, please export the LM API key and SEARCH key as an environment variable:
+
 
 ```bash
-export OPENAI_API_KEY=YOUR_API_KEY
+export LM_KEY=YOUR_API_KEY
 export SEARCHKEY=YOUR_SEARCHKEY
 ```
+> You can define your own [LM API](https://github.com/zjunlp/OmniThink/blob/main/src/tools/lm.py) and [SEARCH API](https://github.com/zjunlp/OmniThink/blob/main/src/tools/rm.py)
 
-or
-
-```bash
-export DASHSCOPE_KEY=YOUR_API_KEY
-export SEARCHKEY=YOUR_SEARCHKEY
-```
-> You can define your own [LLM API](https://github.com/zjunlp/OmniThink/blob/main/src/tools/lm.py) and [SEARCH API](https://github.com/zjunlp/OmniThink/blob/main/src/tools/rm.py)
-
-> Note that the output of the LLM should be a LIST.
+> Note that the output of the LM should be a LIST.
 
 # Results in OmniThink
 The preformance of OmniThink is shown below:

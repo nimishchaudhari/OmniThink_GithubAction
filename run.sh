@@ -1,5 +1,5 @@
 # run the example model after environment setup
-python -m examples.gpt4o \
+python -m examples.deepseekr1 \
  --retriever google \
- --llm qwen-plus \
+ --llm deepseek-reasoner \
  --depth 1
