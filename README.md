@@ -48,6 +48,9 @@ through Thinking</h3>
 - `2025-01-28`, We have provided support for the deepseek-reasoner model. You can try running ./examples/deepseekr1.py to test OmniThink's performance within deepseek-reasoner.
 <details>
 <summary><b>Previous News</b></summary>
+  
+- `2025-01-18`, we open-sourced OmniThink, a machine writing framework.
+
 
 </details>
 
