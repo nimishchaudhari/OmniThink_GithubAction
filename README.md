@@ -35,15 +35,22 @@ through Thinking</h3>
 </div>
 
 ## Table of Contents
+- 🚩[Acknowledgement](#Acknowledgement)
 - 🌻[Quick Start](#quick-start)
 - 🌟[Introduction](#Introduction)
 - 🔧[Dependencies](#Dependencies)
 - 📉[Results](#Results)
 - 🧐[Evaluation](#evaluation)
-- 🚩[Acknowledgement](#Acknowledgement)
+
 
 ---
 Due to the recent high volume of visitors, search API quota limitations, you may encounter an error:```'ValueError: Expected 2D array, got 1D array instead: array=[]. Reshape your data either using array.reshape(-1, 1) if your data has a single feature or array.reshape(1, -1) if it contains a single sample.'```If this error occurs, please try again in a few hours.
+
+# 🌻Acknowledgement
+
+- This work is implemented by [DsPY](https://github.com/stanfordnlp/dspy), [STORM](https://github.com/stanford-oval/storm) Sincere thanks for their efforts.
+- if you have any questions, please feel free to contact via xizekun.xzk@alibaba-inc.com, 1786594371@qq.com or xizekun2023@zju.edu.cn or create an issue.
+
 
 ## 📖 Quick Start
 
@@ -108,13 +115,6 @@ You can find your Article, Outline and mindmap in ./results/
 # 🔍 Evaluation
 
 We are organizing the evaluation code and will open source it soon.
-
-
-# 🌻Acknowledgement
-
-- This work is implemented by [DsPY](https://github.com/stanfordnlp/dspy), [STORM](https://github.com/stanford-oval/storm) Sincere thanks for their efforts.
-- if you have any questions, please feel free to contact via xizekun.xzk@alibaba-inc.com, 1786594371@qq.com or xizekun2023@zju.edu.cn or create an issue.
-
 
 
 ## Citation
