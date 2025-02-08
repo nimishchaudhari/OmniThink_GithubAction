@@ -25,6 +25,8 @@ through Thinking</h3>
 <p align="center">
 <a href="https://zjunlp.github.io/project/OmniThink">[🤖Project]</a>
 <a href="https://arxiv.org/abs/2501.09751">[📄Paper]</a>
+<a href="https://www.youtube.com/watch?v=5qQSJsiE0Sw&t=152s">[📺Youtube]</a> 
+
 <!-- <a href="## 🚩Citation">[🚩Citation]</a> -->
 
 </div>
