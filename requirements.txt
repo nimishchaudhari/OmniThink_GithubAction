@@ -8,8 +8,8 @@ google-cloud==0.34.0
 google-cloud-vision==3.5.0
 google-cloud-storage==2.14.0
 sentence_transformers
-toml
-dspy
+toml==0.10.2
+dspy==2.5.29
 markdown
 unidecode
 extra-streamlit-components==0.1.60
@@ -28,12 +28,12 @@ trafilatura
 langchain-huggingface
 qdrant-client
 langchain-qdrant
-dashscope
+dashscope==1.20.12
 langchain_text_splitters
 trafilatura
-transformers
+transformers==4.46.2
 langchain_qdrant
 langchain_huggingface
-prometheus-eval
-spacy
+prometheus-eval==0.1.20
+spacy==3.8.2
 numpy==1.26.4
