@@ -119,7 +119,35 @@ You can find your Article, Outline and mindmap in ./results/
 
 # 🔍 Evaluation
 
-We are organizing the evaluation code and will open source it soon.
+We provide convenient scripts for evaluating your method. The evaluation is divided into three categories: **Rubric_Grading**, **Knowledge_Density**, and **Information_Diversity**. 
+
+We use the `factscore` library. Please run the following code before starting the evaluation.
+```
+cd eval
+git clone https://github.com/shmsw25/FActScore.git
+```
+
+For Rubric Grading
+ ```
+ python Rubric_Grading.py \
+  --articlepath articlepath \
+  --modelpath modelpath
+ ```
+
+For Information Diversity
+ ```
+ python Information_Diversity.py \
+  --mappath mappath \
+  --model_path model_path
+ ```
+
+ For Knowledge_Density
+ ```
+ python Knowledge_Density.py \
+  --articlepath articlepath \
+  --api_path api_path \
+  --threads threads
+ ```
 
 
 ## Citation

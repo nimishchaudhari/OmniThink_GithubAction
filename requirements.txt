@@ -23,14 +23,13 @@ streamlit-float
 streamlit-option-menu
 sentry-sdk
 pdfkit==1.0.0
-langchain-text-splitters
-trafilatura
+langchain-text-splitters==0.3.2
+trafilatura==1.12.2
 langchain-huggingface
 qdrant-client
 langchain-qdrant
 dashscope==1.20.12
 langchain_text_splitters
-trafilatura
 transformers==4.46.2
 langchain_qdrant
 langchain_huggingface
