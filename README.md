@@ -47,13 +47,12 @@ through Thinking</h3>
 
 
 # 🔔News
-
+- `2025-02-20`, We have added the evaluation methods from the paper to OmniThink, and in the future, we will integrate more evaluation methods.
 - `2025-01-28`, We have provided support for the deepseek-reasoner model. You can try running ./examples/deepseekr1.py to test OmniThink's performance within deepseek-reasoner.
 <details>
 <summary><b>Previous News</b></summary>
   
 - `2025-01-18`, we open-sourced OmniThink, a machine writing framework.
-
 
 </details>
 
