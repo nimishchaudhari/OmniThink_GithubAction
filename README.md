@@ -26,6 +26,7 @@ through Thinking</h3>
 <a href="https://zjunlp.github.io/project/OmniThink">[🤖Project]</a>
 <a href="https://arxiv.org/abs/2501.09751">[📄Paper]</a>
 <a href="https://www.youtube.com/watch?v=5qQSJsiE0Sw&t=152s">[📺Youtube]</a> 
+<a href="https://pan.baidu.com/s/1vSMaHRs79sgtvsvDc_rMxg?pwd=z9bg" target="_blank">[🐳docker]</a> 
 
 <!-- <a href="## 🚩Citation">[🚩Citation]</a> -->
 
