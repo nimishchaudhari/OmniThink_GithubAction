@@ -90,7 +90,7 @@ conda create -n OmniThink python=3.11
 git clone https://github.com/zjunlp/OmniThink.git
 cd OmniThink
 # Install requirements
-pip install -r requirement.txt
+pip install -r requirements.txt
 
 ```
 🔑 Before running, please export the LM API key and SEARCH key as an environment variable:
