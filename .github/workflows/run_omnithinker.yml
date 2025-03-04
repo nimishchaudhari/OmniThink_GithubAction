@@ -68,7 +68,13 @@ jobs:
           LM_KEY: ${{ secrets.LM_KEY }}
           SEARCHKEY: ${{ secrets.SEARCHKEY }}
         run: |
-          conda run -n OmniThink python src/omni_think.py "${{ env.FINAL_TOPIC }}"
+          echo "Running OmniThinker with topic: ${{ env.FINAL_TOPIC }}"
+          conda run -n OmniThink python src/omni_think.py "${{ env.FINAL_TOPIC }}" || {
+            echo "Error: OmniThinker execution failed."
+            PAYLOAD=$(jq -n --arg body "Error: OmniThinker failed to execute. Check workflow logs for details." '{body: $body}')
+            curl -s -X POST -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" -d "$PAYLOAD" "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/comments"
+            exit 1
+          }
 
       - name: Check Article Generation
         run: |
