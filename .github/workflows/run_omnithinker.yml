@@ -19,7 +19,7 @@ jobs:
         run: apt-get update && apt-get install -y jq
 
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4  # Updated from v3 to v4
 
       - name: Update Conda and Set Python 3.11
         run: |
@@ -74,10 +74,11 @@ jobs:
           fi
 
       - name: Upload Results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4  # Updated from v3 to v4
         with:
           name: omnithink_results
           path: results/*
+          if-no-files-found: error  # Fail if no files are found
 
       - name: Prepare Comment
         run: |
