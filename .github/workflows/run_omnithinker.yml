@@ -10,7 +10,7 @@ concurrency:
 
 jobs:
   run:
-    if: contains(github.event.comment.body, '@OmniThinker:')
+    if: contains(github.event.comment.body, '@omnithinker')
     runs-on: ubuntu-latest
     container:
       image: continuumio/miniconda3:4.12.0
@@ -33,14 +33,14 @@ jobs:
       - name: Extract Topic
         run: |
           COMMENT_BODY="${{ github.event.comment.body }}"
-          TOPIC=$(python -c "import sys; body = sys.argv[1]; tag = '@OmniThinker:'; print(body.split(tag)[1].split('\n')[0].strip() if tag in body else '')" "$COMMENT_BODY")
+          TOPIC=$(python -c "import sys; body = sys.argv[1]; tag = '@omnithinker'; print(body.split(tag)[1].strip() if tag in body else '')" "$COMMENT_BODY")
           echo "TOPIC=$TOPIC" >> $GITHUB_ENV
 
       - name: Check Topic
         if: env.TOPIC == ''
         run: |
-          echo "Please provide a topic after @omnithinker:"
-          PAYLOAD=$(jq -n --arg body "Please provide a topic after @OmniThinker:" '{body: $body}')
+          echo "No topic provided after @omnithinker"
+          PAYLOAD=$(jq -n --arg body "Please provide a topic after @omnithinker" '{body: $body}')
           curl -s -X POST -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" -d "$PAYLOAD" "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/comments"
           exit 1
 
@@ -50,25 +50,31 @@ jobs:
           REPO=${{ github.event.repository.full_name }}
           API_URL="https://api.github.com/repos/$REPO/issues/$ISSUE_NUMBER"
           CONTEXT=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" "$API_URL" | jq -r '.title + " " + (.body // "")')
-          echo "CONTEXT=$CONTEXT" >> $GITHUB_ENV
+          echo "CONTEXT<<EOF" >> $GITHUB_ENV
+          echo "$CONTEXT" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
 
       - name: Set Final Topic
         run: |
-          FINAL_TOPIC="Context: ${CONTEXT}\nQuestion: ${TOPIC}\nGenerate an article based on this context and question."
-          echo "FINAL_TOPIC=$FINAL_TOPIC" >> $GITHUB_ENV
+          TOPIC="${{ env.TOPIC }}"
+          CONTEXT="${{ env.CONTEXT }}"
+          FINAL_TOPIC="Context: $CONTEXT\nQuestion: $TOPIC\nGenerate an article based on this context and question."
+          echo "FINAL_TOPIC<<EOF" >> $GITHUB_ENV
+          echo "$FINAL_TOPIC" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
 
       - name: Run OmniThinker
         env:
           LM_KEY: ${{ secrets.LM_KEY }}
           SEARCHKEY: ${{ secrets.SEARCHKEY }}
         run: |
-          conda run -n OmniThink python src/omni_think.py "${FINAL_TOPIC}"
+          conda run -n OmniThink python src/omni_think.py "${{ env.FINAL_TOPIC }}"
 
       - name: Check Article Generation
         run: |
           if [ ! -f results/article.md ] || [ ! -s results/article.md ]; then
-            echo "Error: Article generation failed or produced an empty file."
-            PAYLOAD=$(jq -n --arg body "Error: Article generation failed." '{body: $body}')
+            echo "Error: Article generation failed or file is empty."
+            PAYLOAD=$(jq -n --arg body "Error: Article generation failed or produced an empty file." '{body: $body}')
             curl -s -X POST -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" -d "$PAYLOAD" "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/comments"
             exit 1
           fi
