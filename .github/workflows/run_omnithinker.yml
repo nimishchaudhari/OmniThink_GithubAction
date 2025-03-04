@@ -10,7 +10,7 @@ concurrency:
 
 jobs:
   run:
-    if: contains(github.event.comment.body, '@omnithinker:')
+    if: contains(github.event.comment.body, '@OmniThinker:')
     runs-on: ubuntu-latest
     container:
       image: continuumio/miniconda3:4.12.0
@@ -33,14 +33,14 @@ jobs:
       - name: Extract Topic
         run: |
           COMMENT_BODY="${{ github.event.comment.body }}"
-          TOPIC=$(python -c "import sys; body = sys.argv[1]; tag = '@omnithinker:'; print(body.split(tag)[1].split('\n')[0].strip() if tag in body else '')" "$COMMENT_BODY")
+          TOPIC=$(python -c "import sys; body = sys.argv[1]; tag = '@OmniThinker:'; print(body.split(tag)[1].split('\n')[0].strip() if tag in body else '')" "$COMMENT_BODY")
           echo "TOPIC=$TOPIC" >> $GITHUB_ENV
 
       - name: Check Topic
         if: env.TOPIC == ''
         run: |
           echo "Please provide a topic after @omnithinker:"
-          PAYLOAD=$(jq -n --arg body "Please provide a topic after @omnithinker:" '{body: $body}')
+          PAYLOAD=$(jq -n --arg body "Please provide a topic after @OmniThinker:" '{body: $body}')
           curl -s -X POST -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" -d "$PAYLOAD" "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/comments"
           exit 1
 
