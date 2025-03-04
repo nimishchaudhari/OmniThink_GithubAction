@@ -3,7 +3,7 @@ import sys
 import logging
 # Add repository root to sys.path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from src.tools.lm import OpenAIModel_dashscope
+import dspy  # Use DSPy's main LM client
 from src.tools.rm import GoogleSearchAli
 from src.tools.mindmap import MindMap
 from src.actions.outline_generation import OutlineGenerationModule
@@ -18,13 +18,8 @@ logger = logging.getLogger(__name__)
 def generate_article(topic):
     """Generate a 300-word article based on the provided topic using OmniThink's tools."""
     # Initialize language model with LM_KEY
-    kwargs = {
-        'api_key': os.getenv("LM_KEY"),
-        'temperature': 1.0,
-        'top_p': 0.9,
-    }
     try:
-        lm = OpenAIModel_dashscope(model="deepseek-reasoner", max_tokens=400, **kwargs)
+        lm = dspy.LM(model="deepseek/deepseek-reasoner", api_key=os.getenv("LM_KEY"), max_tokens=400, temperature=1.0, top_p=0.9)
     except Exception as e:
         logger.error(f"Failed to initialize language model: {e}")
         raise
@@ -32,8 +27,13 @@ def generate_article(topic):
     # Initialize search retriever with SEARCHKEY
     try:
         rm = GoogleSearchAli(k=5, api_key=os.getenv("SEARCHKEY"))
+        # Test search to ensure it works
+        test_results = rm.search("test query")
+        if not test_results or len(test_results) == 0:
+            logger.error("Search retriever returned no results. Check SEARCHKEY.")
+            raise ValueError("Search retriever failed to return results.")
     except Exception as e:
-        logger.error(f"Failed to initialize search retriever: {e}")
+        logger.error(f"Failed to initialize or use search retriever: {e}")
         raise
 
     # Parse topic string
